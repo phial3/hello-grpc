@@ -30,8 +30,6 @@ import java.security.cert.X509Certificate;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-import static java.lang.String.format;
-
 /*
  * RpcServiceClient is used to send transactions to chainmaker node
  */
@@ -123,12 +121,12 @@ public class RpcServiceClient {
             clientKey = clientTLSProps.getKey();
 
             if (!"openSSL".equals(node.getSslProvider()) && !"JDK".equals(node.getSslProvider())) {
-                throw new RpcServiceClientException(format("Endpoint %s property of sslProvider has to be either "
+                throw new RpcServiceClientException(String.format("Endpoint %s property of sslProvider has to be either "
                         + "openSSL or JDK. value: '%s'", node.getGrpcUrl(), node.getSslProvider()));
             }
 
             if (!"TLS".equals(node.getNegotiationType()) && !"plainText".equals(node.getNegotiationType())) {
-                throw new RpcServiceClientException(format("Endpoint %s property of negotiationType has to be either "
+                throw new RpcServiceClientException(String.format("Endpoint %s property of negotiationType has to be either "
                         + "TLS or plainText. value: '%s'", node.getGrpcUrl(), node.getNegotiationType()));
             }
             if (node.getTlsCertBytes() == null) {
